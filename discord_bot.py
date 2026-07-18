@@ -1,4 +1,9 @@
 import os
+import sys
+
+# Ensure stdout uses UTF-8 to prevent emoji crash on Windows PM2
+sys.stdout.reconfigure(encoding='utf-8')
+
 import tempfile
 import asyncio
 import discord
