@@ -57,22 +57,11 @@ async def scan(interaction: discord.Interaction, pr_url: str):
     # We edit the deferred response message
     message = await interaction.edit_original_response(content=initial_msg)
     
-    # 1. Clone repository to temp directory
-    try:
-        temp_dir = tempfile.mkdtemp()
-        if "github.com" in pr_url:
-            repo_url = pr_url.split("/pull/")[0] + ".git"
-            git.Repo.clone_from(repo_url, temp_dir)
-        else:
-            temp_dir = "./sample_repo"
-    except Exception as e:
-        await interaction.edit_original_response(content=f"🔴 **Error cloning repository:** {str(e)}")
-        return
-
-    # 2. Execute Pipeline and stream updates
+    # 1. Execute Pipeline and stream updates
     report_markdown = None
     try:
-        for update in execute_pipeline(temp_dir, pr_url):
+        # execute_pipeline natively handles cloning, PR fetching, and checkout now!
+        for update in execute_pipeline(pr_url):
             if update["step"] == 7:
                 report_markdown = update.get("report")
                 break
