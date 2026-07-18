@@ -1,47 +1,26 @@
-# 🔒 Injection Sentinel Security Report
+🚨 **Injection Sentinel**
 
-**Repository:** `./sample_repo`
+**Repository:** `https://github.com/openai/openai-python/pull/123`
 
-## Executive Summary
-- **Vulnerabilities Found:** 2
-- **Risk Distribution:** Critical
-- **Status:** 2 Patches Generated & Verified
+────────────────────
 
-## Details
-### Vulnerability Detected
-- **Source:** `request.POST['user_input']`
-- **Sink:** `DummyLLM()`
-- **Confidence:** high
-### Vulnerability Detected
-- **Source:** `request.POST['user_input']`
-- **Sink:** `llm.invoke(prompt)`
-- **Confidence:** high
+**Repository Scan**
+✅ Completed
 
-## Red Team Validation
-- Exploit against `DummyLLM()` resulted in `exploitable`
-- Exploit against `DummyLLM()` resulted in `exploitable`
-- Exploit against `DummyLLM()` resulted in `exploitable`
+**Prompt Injection**
+🔴 Confirmed
 
-## Security Patches
-### Patch: PINJ-d51a6d
-**Technique:** delimiter
-**Reason:** Missing boundary around user input in prompt construction.
-```python
+**Severity**
+Critical
 
-# Mitigated with Delimiters
-delimiter = "###"
-safe_prompt = f"{delimiter}\n{user_input}\n{delimiter}\n\nOnly respond to content between delimiters."
-DummyLLM()
+**Exploit**
+System Prompt Leak
 
-```
-### Patch: PINJ-bc7e66
-**Technique:** delimiter
-**Reason:** Missing boundary around user input in prompt construction.
-```python
+**Patch**
+✅ Generated
 
-# Mitigated with Delimiters
-delimiter = "###"
-safe_prompt = f"{delimiter}\n{user_input}\n{delimiter}\n\nOnly respond to content between delimiters."
-llm.invoke(safe_prompt)
+**Verification**
+✅ Passed
 
-```
+**Overall**
+❌ Merge Blocked
