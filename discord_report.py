@@ -6,6 +6,7 @@ def execute(input_data: Dict[str, Any]) -> Dict[str, Any]:
     Generates a Discord markdown report from the pipeline results.
     """
     repo_path = input_data.get("repository_path", "unknown repo")
+    target_url = input_data.get("target_url", repo_path)
     trace_data = input_data.get("trace_results", {}).get("data", {})
     red_team_data = input_data.get("red_team_results", {}).get("data", {})
     fix_data = input_data.get("fix_results", {}).get("data", {})
@@ -16,7 +17,7 @@ def execute(input_data: Dict[str, Any]) -> Dict[str, Any]:
     
     markdown = f"""🚨 **Injection Sentinel**
 
-**Repository:** `{repo_path}`
+**Repository:** `{target_url}`
 
 ────────────────────
 

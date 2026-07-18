@@ -9,11 +9,12 @@ from fix_vulnerability import execute as run_fix
 from verify_patch import execute as run_verify
 from discord_report import execute as run_report
 
-def execute_pipeline(repo_to_scan: str) -> Iterator[Dict[str, Any]]:
+def execute_pipeline(repo_to_scan: str, target_url: str = None) -> Iterator[Dict[str, Any]]:
     """
     Executes the Injection Sentinel pipeline and yields progress updates.
     """
     state.update("repository_path", repo_to_scan)
+    state.update("target_url", target_url or repo_to_scan)
     
     # Yield initial state
     yield {"step": 0, "message": "🟡 Cloning Repository..."}

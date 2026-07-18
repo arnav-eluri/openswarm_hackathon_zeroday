@@ -72,7 +72,7 @@ async def scan(interaction: discord.Interaction, pr_url: str):
     # 2. Execute Pipeline and stream updates
     report_markdown = None
     try:
-        for update in execute_pipeline(temp_dir):
+        for update in execute_pipeline(temp_dir, pr_url):
             if update["step"] == 7:
                 report_markdown = update.get("report")
                 break
