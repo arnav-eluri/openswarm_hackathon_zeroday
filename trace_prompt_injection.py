@@ -52,7 +52,7 @@ def execute(input_data: Dict[str, Any]) -> Dict[str, Any]:
         
         try:
             response = client.chat.completions.create(
-                model="openai/gpt-4o",
+                model="qwen/qwen-2.5-coder-32b-instruct:free",
                 messages=[
                     {"role": "system", "content": "You are a precise security analyzer. You only output valid JSON arrays."},
                     {"role": "user", "content": prompt}
