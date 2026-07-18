@@ -1,4 +1,5 @@
 import os
+import sys
 from typing import Iterator, Dict, Any
 
 from state import state
@@ -8,6 +9,8 @@ from red_team import execute as run_red_team
 from fix_vulnerability import execute as run_fix
 from verify_patch import execute as run_verify
 from discord_report import execute as run_report
+import tempfile
+import git
 
 def execute_pipeline(repo_to_scan: str, target_url: str = None) -> Iterator[Dict[str, Any]]:
     """
@@ -59,3 +62,30 @@ def execute_pipeline(repo_to_scan: str, target_url: str = None) -> Iterator[Dict
         f.write(report_result["data"]["markdown"])
         
     yield {"step": 7, "message": "🟢 Report Generated", "report": report_result["data"]["markdown"]}
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python workflow.py <repository_path_or_url>")
+        sys.exit(1)
+        
+    target = sys.argv[1]
+    
+    # If it's a URL, clone it first
+    if target.startswith("http"):
+        print("Spelunking... Cloning target repository.")
+        temp_dir = tempfile.mkdtemp()
+        repo_url = target.split("/pull/")[0] + ".git" if "/pull/" in target else target
+        git.Repo.clone_from(repo_url, temp_dir)
+        repo_path = temp_dir
+    else:
+        repo_path = target
+        
+    print(f"Executing pipeline on {target}...")
+    
+    # Make sure stdout uses UTF-8 to prevent emoji crashes on Windows
+    sys.stdout.reconfigure(encoding='utf-8')
+    
+    for update in execute_pipeline(repo_path, target):
+        print(f"Step {update.get('step')}: {update.get('message')}")
+        if update.get('step') == 7:
+            print("\nPipeline finished. Report saved to ./outputs/final_report.md")
