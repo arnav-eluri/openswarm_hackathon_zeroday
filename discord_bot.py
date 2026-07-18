@@ -1,16 +1,15 @@
 import os
 import sys
+import asyncio
+import threading
 
 # Ensure stdout uses UTF-8 to prevent emoji crash on Windows PM2
 sys.stdout.reconfigure(encoding='utf-8')
 
-import tempfile
-import asyncio
 import discord
 from discord import app_commands
 from discord.ui import Button, View
 from dotenv import load_dotenv
-import git
 
 from workflow import execute_pipeline
 
@@ -18,18 +17,19 @@ load_dotenv()
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 
+
 class ApprovalView(View):
     def __init__(self):
-        super().__init__()
+        super().__init__(timeout=300)
 
     @discord.ui.button(label="✅ Approve", style=discord.ButtonStyle.success)
     async def approve(self, interaction: discord.Interaction, button: Button):
-        await interaction.response.send_message("Workflow Approved! Code is ready to merge.", ephemeral=False)
+        await interaction.response.send_message("✅ Workflow Approved! Code is ready to merge.", ephemeral=False)
         self.stop()
 
     @discord.ui.button(label="❌ Reject", style=discord.ButtonStyle.danger)
     async def reject(self, interaction: discord.Interaction, button: Button):
-        await interaction.response.send_message("Workflow Rejected! Please review the prompt injection vulnerabilities.", ephemeral=False)
+        await interaction.response.send_message("❌ Workflow Rejected! Please review the prompt injection vulnerabilities.", ephemeral=False)
         self.stop()
 
 
@@ -41,7 +41,7 @@ class InjectionSentinelBot(discord.Client):
 
     async def setup_hook(self):
         await self.tree.sync()
-        print("✅ Slash commands synced!")
+        print("Slash commands synced!")
 
 
 bot = InjectionSentinelBot()
@@ -49,10 +49,8 @@ bot = InjectionSentinelBot()
 
 @bot.event
 async def on_ready():
-    print(f"✅ Logged in as {bot.user}")
+    print(f"Logged in as {bot.user}")
 
-
-import threading
 
 async def async_execute_pipeline(target_url):
     """Bridge a synchronous generator to an async loop using a queue and a background thread."""
@@ -78,40 +76,54 @@ async def async_execute_pipeline(target_url):
             raise item
         yield item
 
-@bot.tree.command(name="scan", description="Scan a GitHub Pull Request for Prompt Injections")
+
+@bot.tree.command(name="scan", description="Scan a GitHub Pull Request or Repository for Prompt Injections")
 async def scan(interaction: discord.Interaction, pr_url: str):
-    # Defer the response since we will be doing work that takes longer than 3 seconds
-    await interaction.response.defer(thinking=True)
-    
-    initial_msg = f"🚀 **Injection Sentinel Started**\n\n**Target:** {pr_url}\n\n**Status:**\n🟡 Acquiring Repository..."
-    
-    # We edit the deferred response message
-    message = await interaction.edit_original_response(content=initial_msg)
-    
-    # 1. Execute Pipeline and stream updates (running in background thread to prevent heartbeat block!)
+    # Acknowledge IMMEDIATELY within 3 seconds before doing any work.
+    # Failing to do this causes the "Unknown interaction" 10062 error.
+    try:
+        await interaction.response.defer(thinking=True)
+    except discord.errors.NotFound:
+        # Interaction already expired (e.g. from before a bot restart) - silently ignore
+        return
+    except Exception as e:
+        print(f"Failed to defer interaction: {e}")
+        return
+
+    initial_msg = f"**Injection Sentinel Started**\n\n**Target:** {pr_url}\n\n**Status:**\nAcquiring Repository..."
+    await interaction.edit_original_response(content=initial_msg)
+
+    # Execute Pipeline in a background thread so the Discord heartbeat is never blocked
     report_markdown = None
     try:
         async for update in async_execute_pipeline(pr_url):
             if update["step"] == 7:
                 report_markdown = update.get("report")
                 break
-                
-            new_content = f"🚀 **Injection Sentinel Progress**\n\n**Target:** {pr_url}\n\n**Status:**\n{update['message']}"
+
+            if update["step"] == -1:
+                await interaction.edit_original_response(content=f"Pipeline Error\n\n{update['message']}")
+                return
+
+            new_content = f"**Injection Sentinel Progress**\n\n**Target:** {pr_url}\n\n**Status:**\n{update['message']}"
             await interaction.edit_original_response(content=new_content)
-            await asyncio.sleep(1.0) # Small delay to prevent discord rate limits
+            await asyncio.sleep(1.0)
     except Exception as e:
-         await interaction.edit_original_response(content=f"🔴 **Pipeline Error:** {str(e)}")
-         return
-         
-    # 3. Send final report
+        try:
+            await interaction.edit_original_response(content=f"Pipeline Error: {str(e)}")
+        except Exception:
+            pass
+        return
+
+    # Send final report
     if report_markdown:
-        await interaction.edit_original_response(content="✅ **Scan Complete**")
-        
-        embed = discord.Embed(title="🚨 Injection Sentinel Report", color=0xff0000)
-        embed.description = report_markdown
-        
+        await interaction.edit_original_response(content="Scan Complete")
+
+        # Discord embeds have a 4096 char limit - truncate if needed
+        description = report_markdown[:4000] + "..." if len(report_markdown) > 4000 else report_markdown
+
+        embed = discord.Embed(title="Injection Sentinel Report", description=description, color=0xff0000)
         view = ApprovalView()
-        # Followup to attach the embed and view
         await interaction.followup.send(embed=embed, view=view)
 
 
