@@ -1,6 +1,6 @@
 🚨 **Injection Sentinel**
 
-**Repository:** `https://github.com/aws/aws-toolkit-vscode/pull/8790`
+**Repository:** `https://github.com/openai/openai-python/pull/123`
 
 ────────────────────
 

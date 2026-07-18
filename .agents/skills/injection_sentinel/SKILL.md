@@ -1,21 +1,34 @@
 ---
 name: injection_sentinel
-description: A multi-agent security pipeline that scans an AI repository for Prompt Injection vulnerabilities.
+description: A multi-agent security pipeline that scans an AI repository for Prompt Injection vulnerabilities and integrates with a Discord bot.
 ---
 
 # Skill: Injection Sentinel
 
 ## Purpose
-A production-quality prompt injection detection and remediation system. It scans a repository for LLM sinks, traces user input to these sinks, validates exploitability via red teaming, generates secure defensive patches (like delimiters), verifies those patches, and reports the findings.
+A production-quality prompt injection detection and remediation system. It scans a repository for LLM sinks, traces user input to these sinks, performs a complete AI Security Audit via OpenRouter LLM, validates exploitability via red teaming, generates secure defensive patches, verifies those patches, and reports the findings to Discord.
 
 ## When to use
-Use this skill when you need to audit an AI/LLM-integrated codebase for prompt injection vulnerabilities and generate secure fixes for them locally, without relying on remote APIs.
+Use this skill when you need to audit an AI/LLM-integrated codebase (e.g. from a GitHub Pull Request) for prompt injection vulnerabilities, generate secure fixes for them, and report back to a Discord server.
 
-## Entrypoint
-`python workflow.py`
+## Prerequisites
+Ensure the `.env` file contains the required credentials:
+```
+DISCORD_TOKEN=your_discord_bot_token
+OPENROUTER_API_KEY=your_openrouter_api_key
+```
 
-## Expected Inputs
-Execute the script from the command line, optionally passing the repository directory as an argument.
+## Running the Discord Bot
+The primary interface for this skill is the Discord bot. It must be run persistently in the background.
+
+```bash
+pm2 start ecosystem.config.js
+```
+*Note: The bot uses discord.app_commands for slash commands. In Discord, type `/scan <pr_url>` to execute the pipeline.*
+
+## Running Manually via CLI
+You can also execute the pipeline manually against a local directory without Discord:
+
 ```bash
 python workflow.py [path_to_repository]
 ```
@@ -24,25 +37,16 @@ python workflow.py [path_to_repository]
 The pipeline orchestrates various independent agents. The final output is a Markdown report generated in `./outputs/final_report.md` containing:
 - Executive Summary of vulnerabilities.
 - Detected input-to-prompt traces.
+- AI Auditor Classification (CLEAN, TRUE_POSITIVE, etc).
 - Validated red team exploits.
 - Python code diffs for security patches.
 
-## Constraints
-- **Execution:** All operations occur locally using pure Python.
-- **Independence:** No remote LLM providers (OpenAI, Gemini, Anthropic) are used.
-- **Architecture:** Follows the OpenSwarm multi-agent architecture where agents do not call each other directly; they are coordinated via `workflow.py`.
-
-## Examples
-To run against the included sample repository:
-```bash
-python workflow.py ./sample_repo
-```
-
-To run against a custom directory:
-```bash
-python workflow.py ../my_ai_project
-```
-
-IMPORTANT
-All file paths below are relative to
-C:/Users/arnav/Desktop/Injection-Sentinel
+## Architecture & Agents
+- **`discord_bot.py`**: Discord interface and orchestrator integration.
+- **`workflow.py`**: Pipeline generator that executes the agent chain.
+- **`scan_repository.py`**: Static AST parser for identifying LLM sinks.
+- **`trace_prompt_injection.py`**: Advanced OpenRouter LLM auditor using a strict security prompt.
+- **`red_team.py`**: Exploit payload generator.
+- **`fix_vulnerability.py`**: Automated patch generator.
+- **`verify_patch.py`**: Patch validator.
+- **`discord_report.py`**: Markdown report builder.

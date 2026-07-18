@@ -244,7 +244,7 @@ def execute(input_data: Dict[str, Any]) -> Dict[str, Any]:
     
     try:
         response = client.chat.completions.create(
-            model="qwen/qwen-2.5-coder-32b-instruct:free",
+            model="google/gemini-2.0-flash-lite-preview-02-05:free",
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": prompt}
