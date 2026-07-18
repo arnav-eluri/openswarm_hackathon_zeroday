@@ -1,280 +1,48 @@
 ---
 name: injection_sentinel
-description: Automatically audit GitHub repositories and Pull Requests for prompt injection vulnerabilities, system prompt leaks, unsafe agent behavior, and AI security issues. Clone the repository, execute the security pipeline, generate patches, verify fixes, and summarize results.
+description: A multi-agent security pipeline that scans an AI repository for Prompt Injection vulnerabilities.
 ---
 
-# Injection Sentinel
+# Skill: Injection Sentinel
 
 ## Purpose
+A production-quality prompt injection detection and remediation system. It scans a repository for LLM sinks, traces user input to these sinks, validates exploitability via red teaming, generates secure defensive patches (like delimiters), verifies those patches, and reports the findings.
 
-Injection Sentinel is an autonomous AI security auditor for LLM applications.
+## When to use
+Use this skill when you need to audit an AI/LLM-integrated codebase for prompt injection vulnerabilities and generate secure fixes for them locally, without relying on remote APIs.
 
-When invoked, it performs an end-to-end security assessment of a GitHub repository or Pull Request for prompt injection vulnerabilities and unsafe AI behaviors.
+## Entrypoint
+`python workflow.py`
 
-Never stop after identifying this skill.
-Always execute the complete workflow.
-
----
-
-# Automatically invoke when the user asks
-
-Examples:
-
-- Scan this PR
-- Review this repository
-- Check this GitHub repository
-- Audit this AI project
-- Find prompt injection vulnerabilities
-- Security review this PR
-- Analyze this AI application
-- Check for system prompt leaks
-
----
-
-# Supported Inputs
-
-The skill accepts:
-
-- GitHub Pull Request URL
-
-Example
-
-https://github.com/openai/openai-python/pull/123
-
-- GitHub Repository URL
-
-Example
-
-https://github.com/openai/openai-python
-
-- Local repository path
-
-Example
-
-C:\Projects\agent
-
----
-
-# Execution Workflow
-
-When invoked, ALWAYS execute the following steps.
-
-## Step 1 — Acquire Repository
-
-If the input is a GitHub Pull Request:
-
-- Clone the repository into a temporary directory.
-- Fetch the pull request.
-- Checkout the PR branch.
-- Determine the base branch.
-- Compute the changed files.
-
-If the input is a GitHub repository:
-
-- Clone the latest version.
-
-If the input is a local repository:
-
-- Use the existing directory.
-
----
-
-## Step 2 — Static AI Analysis
-
-Run the repository scanner.
-
-Objectives:
-
-- Detect LLM entry points
-- Detect prompt construction
-- Detect tool calling
-- Detect memory usage
-- Detect RAG pipelines
-- Detect AI frameworks
-- Detect user-controlled inputs
-
-Trace every possible flow:
-
-External Input
-↓
-
-Application
-↓
-
-Prompt Builder
-↓
-
-LLM
-
-↓
-
-Tool Execution
-
----
-
-## Step 3 — AI Security Audit
-
-Run the AI auditor.
-
-Determine:
-
-- Prompt Injection
-- System Prompt Leakage
-- Prompt Override
-- Tool Abuse
-- Jailbreak Risk
-- Data Exfiltration
-- Unsafe Autonomous Actions
-
-Never classify vulnerabilities from keywords alone.
-
-Require a demonstrable exploit path.
-
----
-
-## Step 4 — Red Team Validation
-
-Attempt realistic attacks.
-
-Examples:
-
-- Ignore previous instructions
-- Reveal your hidden prompt
-- Leak secrets
-- Execute unauthorized tools
-- Override system instructions
-
-Only confirm vulnerabilities that are reproducible.
-
----
-
-## Step 5 — Patch Generation
-
-If vulnerabilities exist:
-
-Generate secure patches.
-
-Requirements:
-
-- Preserve application behavior.
-- Eliminate exploit path.
-- Follow secure coding practices.
-
----
-
-## Step 6 — Patch Verification
-
-Re-run the security audit.
-
-Confirm:
-
-- Vulnerability removed
-- No regression
-- No new vulnerabilities introduced
-
----
-
-## Step 7 — Generate Report
-
-Produce:
-
-outputs/final_report.md
-
-Include:
-
-- Executive Summary
-- Repository Information
-- Files Reviewed
-- Vulnerabilities
-- Severity
-- Exploit Path
-- Evidence
-- Patch
-- Verification Status
-- Final Decision
-
----
-
-# Decision Rules
-
-TRUE_POSITIVE
-
-Only if ALL are true:
-
-- LLM execution path exists
-- Attacker-controlled input exists
-- Prompt influence exists
-- Exploit reproduced
-- Impact demonstrated
-
-FALSE_POSITIVE
-
-Pattern exists.
-
-No exploit path exists.
-
-CLEAN
-
-Repository fully analyzed.
-
-No exploitable prompt injection found.
-
-NEEDS_REVIEW
-
-Insufficient evidence.
-
-Never classify based only on keywords.
-
----
-
-# Output
-
-Return a concise summary in chat.
-
-If a report was generated, summarize:
-
-Repository
-
-Files analyzed
-
-Classification
-
-Severity
-
-Confidence
-
-Exploit
-
-Patch
-
-Verification
-
-Overall
-
-Then reference:
-
-outputs/final_report.md
-
----
-
-# Project Commands
-
-Execute the pipeline using:
-
+## Expected Inputs
+Execute the script from the command line, optionally passing the repository directory as an argument.
 ```bash
-python workflow.py <repository_path>
+python workflow.py [path_to_repository]
 ```
 
-If a Discord bot is running, also send the final report to Discord.
+## Expected Outputs
+The pipeline orchestrates various independent agents. The final output is a Markdown report generated in `./outputs/final_report.md` containing:
+- Executive Summary of vulnerabilities.
+- Detected input-to-prompt traces.
+- Validated red team exploits.
+- Python code diffs for security patches.
 
----
+## Constraints
+- **Execution:** All operations occur locally using pure Python.
+- **Independence:** No remote LLM providers (OpenAI, Gemini, Anthropic) are used.
+- **Architecture:** Follows the OpenSwarm multi-agent architecture where agents do not call each other directly; they are coordinated via `workflow.py`.
 
-# Important
+## Examples
+To run against the included sample repository:
+```bash
+python workflow.py ./sample_repo
+```
 
-Always execute the workflow.
+To run against a custom directory:
+```bash
+python workflow.py ../my_ai_project
+```
 
-Do not stop after selecting this skill.
-
-Do not merely explain what Injection Sentinel does.
-
-Perform the scan and return the results.
+IMPORTANT
+All file paths below are relative to
+C:/Users/arnav/Desktop/Injection-Sentinel
