@@ -50,3 +50,7 @@ The pipeline orchestrates various independent agents. The final output is a Mark
 - **`fix_vulnerability.py`**: Automated patch generator.
 - **`verify_patch.py`**: Patch validator.
 - **`discord_report.py`**: Markdown report builder.
+
+## IMPORTANT
+All file paths in this project are relative to the root directory of:
+`C:/Users/arnav/Desktop/openswarm`
