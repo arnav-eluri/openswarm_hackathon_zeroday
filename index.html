@@ -18,46 +18,63 @@
         <div class="orb orb-3"></div>
       </div>
 
-      <!-- Hero Section -->
-      <section class="hero-section" id="hero">
-        <nav class="navbar">
-          <div class="nav-logo">
-            <div class="logo-grid">
-              <div class="logo-dot"></div>
-              <div class="logo-dot"></div>
-              <div class="logo-dot"></div>
-              <div class="logo-dot"></div>
+      <!-- Scroll Animation Section (wraps hero so animation starts from top) -->
+      <section class="scroll-anim-section" id="scroll-anim">
+        <div class="scroll-anim-sticky">
+          <!-- The frame canvas lives here, full-viewport -->
+          <canvas id="frame-canvas"></canvas>
+
+          <!-- Hero content floats above canvas at the start -->
+          <div class="hero-overlay">
+            <nav class="navbar">
+              <div class="nav-logo">
+                <div class="logo-grid">
+                  <div class="logo-dot"></div>
+                  <div class="logo-dot"></div>
+                  <div class="logo-dot"></div>
+                  <div class="logo-dot"></div>
+                </div>
+                <span class="logo-text">OpenSwarm</span>
+              </div>
+              <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link nav-cta">Get Started</a>
+              </div>
+            </nav>
+
+            <div class="hero-content">
+              <div class="hero-badge">v0.1.0 — Pre-release</div>
+              <h1 class="hero-title">
+                <span class="title-line">The Agentic</span>
+                <span class="title-line accent">Operating System</span>
+              </h1>
+              <p class="hero-subtitle">
+                OpenSwarm is a decentralized, AI-native OS where autonomous agents
+                collaborate, negotiate, and execute complex tasks across any infrastructure.
+              </p>
+              <div class="hero-actions">
+                <a href="#features" class="btn btn-primary">Explore Features</a>
+                <a href="https://github.com" target="_blank" class="btn btn-secondary">
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  View on GitHub
+                </a>
+              </div>
             </div>
-            <span class="logo-text">OpenSwarm</span>
-          </div>
-          <div class="nav-links">
-            <a href="#features" class="nav-link">Features</a>
-            <a href="#about" class="nav-link">About</a>
-            <a href="#contact" class="nav-link nav-cta">Get Started</a>
-          </div>
-        </nav>
 
-        <div class="hero-content">
-          <div class="hero-badge">v0.1.0 — Pre-release</div>
-          <h1 class="hero-title">
-            <span class="title-line">The Agentic</span>
-            <span class="title-line accent">Operating System</span>
-          </h1>
-          <p class="hero-subtitle">
-            OpenSwarm is a decentralized, AI-native OS where autonomous agents
-            collaborate, negotiate, and execute complex tasks across any infrastructure.
-          </p>
-          <div class="hero-actions">
-            <a href="#features" class="btn btn-primary">Explore Features</a>
-            <a href="https://github.com" target="_blank" class="btn btn-secondary">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-              View on GitHub
-            </a>
+            <div class="scroll-indicator">
+              <div class="scroll-mouse"></div>
+            </div>
           </div>
-        </div>
 
-        <div class="scroll-indicator">
-          <div class="scroll-mouse"></div>
+          <!-- Animated captions overlay (appears mid-scroll) -->
+          <div class="scroll-anim-overlay">
+            <div class="scroll-anim-label" id="scroll-anim-label">
+              <span class="scroll-anim-tag">OPENSWARM MASCOT</span>
+              <h2 class="scroll-anim-title" id="scroll-anim-title">Decentralized Computing</h2>
+              <p class="scroll-anim-desc" id="scroll-anim-desc">A new kind of intelligence is emerging — one that swarms.</p>
+            </div>
+          </div>
         </div>
       </section>
 
