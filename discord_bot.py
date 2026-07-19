@@ -64,7 +64,8 @@ async def scan(interaction: discord.Interaction, pr_url: str):
             repo_url = pr_url.split("/pull/")[0] + ".git"
             git.Repo.clone_from(repo_url, temp_dir)
         else:
-            temp_dir = "./sample_repo"
+            await interaction.edit_original_response(content="🔴 **Error:** Please provide a valid GitHub Pull Request URL.")
+            return
     except Exception as e:
         await interaction.edit_original_response(content=f"🔴 **Error cloning repository:** {str(e)}")
         return
