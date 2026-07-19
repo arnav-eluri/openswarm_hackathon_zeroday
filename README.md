@@ -46,6 +46,7 @@ Below are examples of Injection Sentinel in action:
 
 ## Contributors
 
-- Arnav Eluri ![LinkedIn](https://www.linkedin.com/in/arnav-eluri)
-- Ruhi Sharma ![LinkedIn](https://www.linkedin.com/in/ruhiisharma/)
-- Aryan Keshri ![LinkedIn](https://www.linkedin.com/in/aryan-keshri-/)
+Arnav Eluri  <a href="https://www.linkedin.com/in/arnav-eluri"><img src="https://img.shields.io/badge/LinkedIn-000000?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"></a> <br>
+Ruhi Sharma  <a href="https://www.linkedin.com/in/ruhiisharma/"><img src="https://img.shields.io/badge/LinkedIn-000000?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"></a> <br>
+Aryan Keshri <a href="https://www.linkedin.com/in/aryan-keshri-/"><img src="https://img.shields.io/badge/LinkedIn-000000?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
+
