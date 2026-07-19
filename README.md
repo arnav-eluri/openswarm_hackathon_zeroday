@@ -34,13 +34,18 @@ graph TD
 Below are examples of Injection Sentinel in action:
 
 ![Triggering the Scan](./public/command.png)
-*Running the `/scan` command to analyze a repository via the Discord interface.*
+<p align="center">
+  <em>Running the <code>/scan</code> command to analyze a repository via the Discord interface.</em>
+</p>
 
 ![Vulnerability Report](./public/report.png)
-*The final security report detailing the detected vulnerability, the generated exploit, and the recommended fix.*
+<p align="center">
+    <em>The final security report detailing the detected vulnerability, the generated exploit, and the recommended fix.</em>
+</p>
+
 
 ## Contributors
 
-- Arnav Eluri
-- Ruhi Sharma
-- Aryan Keshri
+- Arnav Eluri ![LinkedIn](https://www.linkedin.com/in/arnav-eluri)
+- Ruhi Sharma ![LinkedIn](https://www.linkedin.com/in/ruhiisharma/)
+- Aryan Keshri ![LinkedIn](https://www.linkedin.com/in/aryan-keshri-/)
