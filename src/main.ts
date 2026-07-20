@@ -61,7 +61,7 @@ function initTerminalAnimation() {
 
   ScrollTrigger.create({
     trigger: terminal,
-    start: 'top 85%',
+    start: 'clamp(top 85%)',
     once: true,
     onEnter: () => {
       lines.forEach((line, i) => {
@@ -141,6 +141,19 @@ function initParallaxGlows() {
 // ─────────────────────────────────────────────────────────────────────────────
 function initAnimations() {
 
+  // ── Vertical Reveal over Hero ──
+  gsap.to('.hero-reveal-layer', {
+    clipPath: 'inset(0% 0% 0% 0%)',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.hero-section',
+      start: 'top 24px', // Pins exactly where the hero card starts (due to its 24px margin)
+      end: '+=100%',
+      scrub: true,
+      pin: true,
+    }
+  });
+
   // ── Hero entrance timeline ──
   const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } })
 
@@ -174,7 +187,7 @@ function initAnimations() {
 
   // ── Pipeline section ──
   const pipelineTl = gsap.timeline({
-    scrollTrigger: { trigger: '.pipeline-section', start: 'top 75%', once: true }
+    scrollTrigger: { trigger: '.pipeline-section', start: 'clamp(top 75%)', once: true }
   })
   pipelineTl
     .fromTo('.pipeline-section .section-tag',
@@ -194,7 +207,7 @@ function initAnimations() {
       opacity: 1, y: 0, scale: 1,
       duration: 0.6, stagger: 0.1,
       ease: 'back.out(1.2)',
-      scrollTrigger: { trigger: '.pipeline-flow', start: 'top 70%', once: true }
+      scrollTrigger: { trigger: '.pipeline-flow', start: 'clamp(top 70%)', once: true }
     }
   )
 
@@ -205,13 +218,13 @@ function initAnimations() {
       opacity: 1, scaleX: 1,
       duration: 0.35, stagger: 0.08,
       ease: 'power2.out',
-      scrollTrigger: { trigger: '.pipeline-flow', start: 'top 70%', once: true }
+      scrollTrigger: { trigger: '.pipeline-flow', start: 'clamp(top 70%)', once: true }
     }
   )
 
   // ── Features section ──
   const featuresTl = gsap.timeline({
-    scrollTrigger: { trigger: '.features-section', start: 'top 75%', once: true }
+    scrollTrigger: { trigger: '.features-section', start: 'clamp(top 75%)', once: true }
   })
   featuresTl
     .fromTo('.features-section .section-tag',
@@ -231,13 +244,13 @@ function initAnimations() {
       opacity: 1, y: 0, scale: 1, rotateX: 0,
       duration: 0.7, stagger: 0.1,
       ease: 'power3.out',
-      scrollTrigger: { trigger: '.features-grid', start: 'top 70%', once: true }
+      scrollTrigger: { trigger: '.features-grid', start: 'clamp(top 70%)', once: true }
     }
   )
 
   // ── Usage section ──
   const usageTl = gsap.timeline({
-    scrollTrigger: { trigger: '.usage-section', start: 'top 75%', once: true }
+    scrollTrigger: { trigger: '.usage-section', start: 'clamp(top 75%)', once: true }
   })
   usageTl
     .fromTo('.usage-section .section-tag',
@@ -253,7 +266,7 @@ function initAnimations() {
   // Usage steps — slide from left with number bounce
   document.querySelectorAll('.usage-step').forEach((step, i) => {
     const stepTl = gsap.timeline({
-      scrollTrigger: { trigger: step, start: 'top 80%', once: true }
+      scrollTrigger: { trigger: step, start: 'clamp(top 80%)', once: true }
     })
     stepTl
       .fromTo(step,
@@ -269,7 +282,7 @@ function initAnimations() {
 
   // ── About section ──
   const aboutTl = gsap.timeline({
-    scrollTrigger: { trigger: '.about-section', start: 'top 75%', once: true }
+    scrollTrigger: { trigger: '.about-section', start: 'clamp(top 75%)', once: true }
   })
   aboutTl
     .fromTo('.about-heading',
@@ -289,13 +302,13 @@ function initAnimations() {
       opacity: 1, y: 0, scale: 1,
       duration: 0.8, stagger: 0.15,
       ease: 'back.out(1.2)',
-      scrollTrigger: { trigger: '.about-stats', start: 'top 70%', once: true }
+      scrollTrigger: { trigger: '.about-stats', start: 'clamp(top 70%)', once: true }
     }
   )
 
   // ── Team section ──
   const teamTl = gsap.timeline({
-    scrollTrigger: { trigger: '.team-section', start: 'top 75%', once: true }
+    scrollTrigger: { trigger: '.team-section', start: 'clamp(top 75%)', once: true }
   })
   teamTl
     .fromTo('.team-section .section-tag',
@@ -312,7 +325,7 @@ function initAnimations() {
       opacity: 1, y: 0, scale: 1,
       duration: 0.7, stagger: 0.15,
       ease: 'elastic.out(1,0.6)',
-      scrollTrigger: { trigger: '.team-grid', start: 'top 78%', once: true }
+      scrollTrigger: { trigger: '.team-grid', start: 'clamp(top 78%)', once: true }
     }
   )
 
@@ -323,7 +336,7 @@ function initAnimations() {
       scale: 1, rotation: 0,
       duration: 0.6, stagger: 0.15,
       ease: 'back.out(2)',
-      scrollTrigger: { trigger: '.team-grid', start: 'top 78%', once: true }
+      scrollTrigger: { trigger: '.team-grid', start: 'clamp(top 78%)', once: true }
     }
   )
 
@@ -333,7 +346,7 @@ function initAnimations() {
     {
       opacity: 1, y: 0,
       duration: 0.7, ease: 'power3.out',
-      scrollTrigger: { trigger: '.footer-section', start: 'top 85%', once: true }
+      scrollTrigger: { trigger: '.footer-section', start: 'clamp(top 85%)', once: true }
     }
   )
 }
@@ -349,7 +362,7 @@ function initScrollProgress() {
     left: 0;
     height: 2px;
     width: 0%;
-    background: linear-gradient(90deg, #f59e0b, #f97316, #fbbf24);
+    background: linear-gradient(90deg, #BC3908, #941b0c, #c44009);
     z-index: 9999;
     transition: none;
     pointer-events: none;
