@@ -1329,6 +1329,7 @@ code {
   overflow: hidden;
   mix-blend-mode: normal;
   background-color: var(--bg-tertiary); /* fallback if image doesn't load immediately */
+  opacity: 0.4;
 }
 
 /* Add a dark overlay on the background image so text is readable */

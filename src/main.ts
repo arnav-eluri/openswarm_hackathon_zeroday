@@ -1,6 +1,6 @@
-import './style.css'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Lenis from 'lenis'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -369,9 +369,29 @@ function initScrollProgress() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// SMOOTH SCROLL (LENIS)
+// ─────────────────────────────────────────────────────────────────────────────
+function initSmoothScroll() {
+  const lenis = new Lenis({
+    autoRaf: true,
+  });
+
+  // Listen for the scroll event and sync it with ScrollTrigger
+  lenis.on('scroll', ScrollTrigger.update);
+
+  // Sync GSAP ticker with Lenis
+  gsap.ticker.add((time)=>{
+    lenis.raf(time * 1000);
+  });
+  
+  gsap.ticker.lagSmoothing(0);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // BOOT
 // ─────────────────────────────────────────────────────────────────────────────
 function boot() {
+  initSmoothScroll()
   initMobileMenu()
   initCopyButtons()
   initAnimations()

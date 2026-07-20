@@ -9,6 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&family=MuseoModerno:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <style>
+      /* Prevent FOUC entirely while CSS parses */
+      body { background-color: #050505; color: #fafafa; }
+      svg { max-width: 24px; max-height: 24px; }
+    </style>
   </head>
   <body>
     <div id="app">
@@ -104,6 +110,57 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="about-section" id="about">
+        <div class="about-container">
+          <!-- Top Row -->
+          <div class="about-header">
+            <h2 class="about-heading">About<br />the project</h2>
+            <div class="about-desc">
+              <p>Injection Sentinel is a platform built for the OpenSwarm ecosystem, designed to source, detect, and showcase automated prompt injection remediations.</p>
+              <p>Our mission is to offer every developer the chance to reshape their security posture with our multi-agent AI pipeline.</p>
+              
+              <a href="https://github.com/arnav-eluri/openswarm_hackathon_zeroday" target="_blank" rel="noreferrer" class="about-link group">
+                <span class="about-link-text">Injection Sentinel on GitHub</span>
+                <span class="about-link-btn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="about-link-icon"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="about-stats">
+            <div class="stat-card stat-card-1">
+              <div class="stat-bg" style="background-image: url('/agents.png');"></div>
+              <div class="stat-content">
+                <div class="stat-value">6+ Agents</div>
+                <div class="stat-text">Injection Sentinel utilizes specialized agents, guiding security audits and their journeys</div>
+              </div>
+            </div>
+
+            <div class="stat-card stat-card-2">
+              <div class="stat-bg" style="background-image: url('/automated.png');"></div>
+              <div class="stat-content">
+                <div class="stat-value">100%</div>
+                <div class="stat-text">automated remediation moved through the OpenSwarm pipeline</div>
+              </div>
+            </div>
+
+            <div class="stat-card stat-card-3">
+              <div class="stat-bg" style="background-image: url('/secure.png');"></div>
+              <div class="stat-content">
+                <div class="stat-value">Zero</div>
+                <div class="stat-text">false positives with our Red Team confirmation system</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fade Overlay -->
+          <div class="about-fade"></div>
         </div>
       </section>
 
@@ -286,57 +343,6 @@ OPENROUTER_API_KEY=your_openrouter_api_key_here</code></pre>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <!-- About Section -->
-      <section class="about-section" id="about">
-        <div class="about-container">
-          <!-- Top Row -->
-          <div class="about-header">
-            <h2 class="about-heading">About<br />the project</h2>
-            <div class="about-desc">
-              <p>Injection Sentinel is a platform built for the OpenSwarm ecosystem, designed to source, detect, and showcase automated prompt injection remediations.</p>
-              <p>Our mission is to offer every developer the chance to reshape their security posture with our multi-agent AI pipeline.</p>
-              
-              <a href="https://github.com/arnav-eluri/openswarm_hackathon_zeroday" target="_blank" rel="noreferrer" class="about-link group">
-                <span class="about-link-text">Injection Sentinel on GitHub</span>
-                <span class="about-link-btn">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="about-link-icon"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                </span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Stats Grid -->
-          <div class="about-stats">
-            <div class="stat-card stat-card-1">
-              <div class="stat-bg" style="background-image: url('https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260514_154203_6c6f94dc-a07e-4ba5-8688-106f01ccd2c8.png&w=1280&q=85');"></div>
-              <div class="stat-content">
-                <div class="stat-value">6+ Agents</div>
-                <div class="stat-text">Injection Sentinel utilizes specialized agents, guiding security audits and their journeys</div>
-              </div>
-            </div>
-
-            <div class="stat-card stat-card-2">
-              <div class="stat-bg" style="background-image: url('https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260514_154151_45c62c60-3bcc-4f21-8f9d-03722ebb5df8.png&w=1280&q=85');"></div>
-              <div class="stat-content">
-                <div class="stat-value">100%</div>
-                <div class="stat-text">automated remediation moved through the OpenSwarm pipeline</div>
-              </div>
-            </div>
-
-            <div class="stat-card stat-card-3">
-              <div class="stat-bg" style="background-image: url('https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260514_152238_24ec8db4-d728-4739-bb30-e985533e9637.png&w=1280&q=85');"></div>
-              <div class="stat-content">
-                <div class="stat-value">Zero</div>
-                <div class="stat-text">false positives with our Red Team confirmation system</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Fade Overlay -->
-          <div class="about-fade"></div>
         </div>
       </section>
 
