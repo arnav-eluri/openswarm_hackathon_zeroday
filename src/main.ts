@@ -248,41 +248,11 @@ function initAnimations() {
     }
   )
 
-  // ── Usage section ──
-  const usageTl = gsap.timeline({
-    scrollTrigger: { trigger: '.usage-section', start: 'clamp(top 75%)', once: true }
-  })
-  usageTl
-    .fromTo('.usage-section .section-tag',
-      { opacity: 0, y: 20, scale: 0.9 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.5 })
-    .fromTo('.usage-section .section-title',
-      { opacity: 0, y: 35 },
-      { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-    .fromTo('.usage-section .section-subtitle',
-      { opacity: 0, y: 25 },
-      { opacity: 1, y: 0, duration: 0.5 }, '-=0.3')
 
-  // Usage steps — slide from left with number bounce
-  document.querySelectorAll('.usage-step').forEach((step, i) => {
-    const stepTl = gsap.timeline({
-      scrollTrigger: { trigger: step, start: 'clamp(top 80%)', once: true }
-    })
-    stepTl
-      .fromTo(step,
-        { opacity: 0, x: -40 },
-        { opacity: 1, x: 0, duration: 0.55, delay: i * 0.12, ease: 'power3.out' })
-    const num = step.querySelector('.usage-step-num')
-    if (num) {
-      stepTl.fromTo(num,
-        { scale: 0, rotation: -180 },
-        { scale: 1, rotation: 0, duration: 0.5, ease: 'back.out(2.5)' }, '-=0.3')
-    }
-  })
 
   // ── About section ──
   const aboutTl = gsap.timeline({
-    scrollTrigger: { trigger: '.about-section', start: 'clamp(top 75%)', once: true }
+    scrollTrigger: { trigger: '.hero-reveal-layer', start: 'clamp(top 75%)', once: true }
   })
   aboutTl
     .fromTo('.about-heading',
@@ -303,40 +273,6 @@ function initAnimations() {
       duration: 0.8, stagger: 0.15,
       ease: 'back.out(1.2)',
       scrollTrigger: { trigger: '.about-stats', start: 'clamp(top 70%)', once: true }
-    }
-  )
-
-  // ── Team section ──
-  const teamTl = gsap.timeline({
-    scrollTrigger: { trigger: '.team-section', start: 'clamp(top 75%)', once: true }
-  })
-  teamTl
-    .fromTo('.team-section .section-tag',
-      { opacity: 0, y: 20, scale: 0.9 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.5 })
-    .fromTo('.team-section .section-title',
-      { opacity: 0, y: 35 },
-      { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-
-  // Team cards — pop in with elastic
-  gsap.fromTo('.team-card',
-    { opacity: 0, y: 40, scale: 0.85 },
-    {
-      opacity: 1, y: 0, scale: 1,
-      duration: 0.7, stagger: 0.15,
-      ease: 'elastic.out(1,0.6)',
-      scrollTrigger: { trigger: '.team-grid', start: 'clamp(top 78%)', once: true }
-    }
-  )
-
-  // Team avatars — spin in
-  gsap.fromTo('.team-avatar',
-    { scale: 0, rotation: -90 },
-    {
-      scale: 1, rotation: 0,
-      duration: 0.6, stagger: 0.15,
-      ease: 'back.out(2)',
-      scrollTrigger: { trigger: '.team-grid', start: 'clamp(top 78%)', once: true }
     }
   )
 

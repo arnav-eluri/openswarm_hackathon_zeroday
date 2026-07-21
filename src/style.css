@@ -752,238 +752,9 @@ code {
   z-index: 1;
 }
 
-/* ═══════════════════════════════════════════════
-   Usage Section
-   ═══════════════════════════════════════════════ */
 
-.usage-section {
-  position: relative;
-  z-index: 1;
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
 
-.usage-steps {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
 
-.usage-step {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-}
-
-.usage-step-num {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--accent-subtle);
-  border: 1px solid rgba(188, 57, 8, 0.12);
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 800;
-  color: var(--accent);
-  font-family: var(--font-mono);
-  transition: all 0.4s ease;
-}
-
-.usage-step:hover .usage-step-num {
-  background: rgba(188, 57, 8, 0.12);
-  border-color: rgba(188, 57, 8, 0.25);
-  transform: scale(1.08);
-  box-shadow: 0 4px 16px var(--accent-glow);
-}
-
-.usage-step-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.usage-step-content h3 {
-  font-size: 18px;
-  font-family: var(--font-heading);
-  font-weight: 500;
-  color: var(--text-primary);
-  margin-bottom: 12px;
-}
-
-.usage-step-content p {
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--text-secondary);
-  margin-top: 10px;
-}
-
-.usage-step-content p a {
-  color: var(--accent);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  transition: color 0.2s ease;
-}
-
-.usage-step-content p a:hover {
-  color: var(--accent-bright);
-}
-
-.usage-note {
-  font-size: 13px !important;
-  color: var(--text-muted) !important;
-  margin-top: 8px !important;
-}
-
-/* ── Code Blocks ── */
-
-.code-block {
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: rgba(5, 5, 5, 0.9);
-}
-
-.code-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.02);
-  border-bottom: 1px solid var(--border);
-}
-
-.code-lang {
-  font-size: 11px;
-  font-weight: 600;
-  font-family: var(--font-mono);
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.copy-btn {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--accent);
-  background: none;
-  border: 1px solid rgba(188, 57, 8, 0.15);
-  border-radius: 6px;
-  padding: 4px 10px;
-  cursor: pointer;
-  font-family: var(--font);
-  transition: all 0.25s ease;
-}
-
-.copy-btn:hover {
-  background: var(--accent-subtle);
-  border-color: rgba(188, 57, 8, 0.3);
-}
-
-.code-block pre {
-  padding: 16px;
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent-subtle) transparent;
-}
-
-.code-block code {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  line-height: 1.7;
-  color: var(--text-secondary);
-  background: none;
-  padding: 0;
-}
-
-/* ═══════════════════════════════════════════════
-   Team Section
-   ═══════════════════════════════════════════════ */
-
-.team-section {
-  position: relative;
-  z-index: 1;
-}
-
-.team-grid {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-.team-card {
-  text-align: center;
-  padding: 36px 32px;
-  border-radius: var(--radius-lg);
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  width: 220px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.team-card:hover {
-  border-color: rgba(188, 57, 8, 0.15);
-  transform: translateY(-6px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 20px rgba(188, 57, 8, 0.05);
-}
-
-.team-avatar {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, var(--accent), var(--orange));
-  border-radius: 16px;
-  font-size: 18px;
-  font-weight: 800;
-  color: #000;
-  letter-spacing: -0.5px;
-  transition: all 0.4s ease;
-}
-
-.team-card:hover .team-avatar {
-  transform: scale(1.08) rotate(-3deg);
-  box-shadow: 0 8px 24px var(--accent-glow);
-}
-
-.team-card h3 {
-  font-size: 15px;
-  font-family: var(--font-heading);
-  font-weight: 500;
-  color: var(--text-primary);
-  margin-bottom: 10px;
-}
-
-.team-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent);
-  padding: 6px 12px;
-  border-radius: 8px;
-  background: var(--accent-subtle);
-  border: 1px solid rgba(188, 57, 8, 0.1);
-  transition: all 0.25s ease;
-}
-
-.team-link svg {
-  width: 13px;
-  height: 13px;
-}
-
-.team-link:hover {
-  background: rgba(188, 57, 8, 0.12);
-  border-color: rgba(188, 57, 8, 0.2);
-}
 
 /* ═══════════════════════════════════════════════
    Footer
@@ -1141,17 +912,6 @@ code {
 /* ═══════════════════════════════════════════════
    About Section
    ═══════════════════════════════════════════════ */
-
-.about-section {
-  position: relative;
-  z-index: 1;
-  background: var(--bg-secondary);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 80px 24px;
-}
 
 .about-container {
   max-width: var(--container-width);
@@ -1452,15 +1212,19 @@ code {
 
 .hero-subtitle-new { max-width: 800px; color: rgba(255, 248, 240, 0.85); font-size: clamp(16px, 2vw, 20px); line-height: 1.6; }
 
-/* ── Hero Reveal Layer ── */
+/* ── Hero Reveal Layer (About Section) ── */
 .hero-reveal-layer {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--bg-primary); /* matches the site's dark bg */
+  background: var(--bg-secondary);
   z-index: 10;
   clip-path: inset(100% 0 0 0); /* Starts completely hidden at the bottom */
-  pointer-events: none; /* so it doesn't block hero interactions when hidden */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 24px;
+  overflow-y: auto; /* In case content is taller than hero section */
 }
