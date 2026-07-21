@@ -199,28 +199,9 @@ function initAnimations() {
     .fromTo('.pipeline-section .section-subtitle',
       { opacity: 0, y: 25 },
       { opacity: 1, y: 0, duration: 0.5 }, '-=0.3')
-
-  // Pipeline steps — stagger from left
-  gsap.fromTo('.pipeline-step',
-    { opacity: 0, y: 40, scale: 0.9 },
-    {
-      opacity: 1, y: 0, scale: 1,
-      duration: 0.6, stagger: 0.1,
-      ease: 'back.out(1.2)',
-      scrollTrigger: { trigger: '.pipeline-flow', start: 'clamp(top 70%)', once: true }
-    }
-  )
-
-  // Connectors — draw in
-  gsap.fromTo('.pipeline-connector',
-    { opacity: 0, scaleX: 0 },
-    {
-      opacity: 1, scaleX: 1,
-      duration: 0.35, stagger: 0.08,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: '.pipeline-flow', start: 'clamp(top 70%)', once: true }
-    }
-  )
+    .fromTo('.pipeline-image-container',
+      { opacity: 0, y: 40, scale: 0.98 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out' }, '-=0.2')
 
   // ── Features section ──
   const featuresTl = gsap.timeline({

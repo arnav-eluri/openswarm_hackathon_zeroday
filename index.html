@@ -1,285 +1,266 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Injection Sentinel — AI-Powered Prompt Injection Detection</title>
-    <meta name="description" content="Production-quality prompt injection detection and remediation system. Automated multi-agent AI pipeline that secures your codebase against LLM vulnerabilities." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&family=MuseoModerno:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/src/style.css" />
-    <style>
-      /* Prevent FOUC entirely while CSS parses */
-      body { background-color: #050505; color: #fafafa; }
-      svg { max-width: 24px; max-height: 24px; }
-    </style>
-  </head>
-  <body>
-    <div id="app">
-      <!-- Ambient background -->
-      <div class="ambient-bg">
-        <div class="glow glow-1"></div>
-        <div class="glow glow-2"></div>
-        <div class="glow glow-3"></div>
-        <div class="grid-overlay"></div>
-      </div>
 
-      <!-- Navbar -->
-      <nav class="navbar" id="navbar">
-        <a href="#" class="nav-logo" style="text-decoration: none;">
-          <span class="logo-text" style="font-family: var(--font); font-size: 24px; color: #fff8f0; font-weight: 600;"><span style="color: var(--accent);">Sentinel</span></span>
-        </a>
-        <div class="nav-links">
-          <a href="#pipeline" class="nav-link">Pipeline</a>
-          <a href="#features" class="nav-link">Features</a>
-        </div>
-        <div class="nav-actions" style="display: flex; gap: 12px; align-items: center;">
-          <a href="https://github.com/arnav-eluri/openswarm_hackathon_zeroday/tree/main/README.md" target="_blank" class="btn btn-outline-nav">Docs</a>
-          <a href="https://github.com/arnav-eluri/openswarm_hackathon_zeroday" target="_blank" class="btn btn-solid-nav">GitHub</a>
-        </div>
-      </nav>
-      
-      <!-- Hero Section -->
-      <section class="hero-section" id="hero">
-        <div class="hero-content">
-          <h1 class="hero-title">Detect & Neutralize<br/><span style="color: var(--accent);">Prompt Injections</span></h1>
-          <p class="hero-subtitle-new">An automated, multi-agent AI pipeline that scans your codebase for LLM vulnerabilities, generates exploits to confirm risk, and applies verified fixes — all from Discord.</p>
-        </div>
-        <div class="hero-reveal-layer">
-          <div class="about-container">
-            <!-- Top Row -->
-            <div class="about-header">
-              <h2 class="about-heading">About<br />the project</h2>
-              <div class="about-desc">
-                <p>Injection Sentinel is a platform built for the OpenSwarm ecosystem, designed to source, detect, and showcase automated prompt injection remediations.</p>
-                <p>Our mission is to offer every developer the chance to reshape their security posture with our multi-agent AI pipeline.</p>
-                
-                <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px;">
-                  <a href="https://github.com/arnav-eluri/openswarm_hackathon_zeroday" target="_blank" rel="noreferrer" class="about-link group" style="margin-top: 0;">
-                    <span class="about-link-text">Injection Sentinel on GitHub</span>
-                    <span class="about-link-btn">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="about-link-icon"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                    </span>
-                  </a>
-                  <a href="https://github.com/arnav-eluri/openswarm_hackathon_zeroday/tree/main/docs" target="_blank" rel="noreferrer" class="about-link group" style="margin-top: 0;">
-                    <span class="about-link-text">Documentation</span>
-                    <span class="about-link-btn">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="about-link-icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Injection Sentinel — AI-Powered Prompt Injection Detection</title>
+  <meta name="description"
+    content="Production-quality prompt injection detection and remediation system. Automated multi-agent AI pipeline that secures your codebase against LLM vulnerabilities." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&family=MuseoModerno:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+    /* Prevent FOUC entirely while CSS parses */
+    body {
+      background-color: #050505;
+      color: #fafafa;
+    }
 
-            <!-- Stats Grid -->
-            <div class="about-stats">
-              <div class="stat-card stat-card-1">
-                <div class="stat-bg" style="background-image: url('/agents.png');"></div>
-                <div class="stat-content">
-                  <div class="stat-value">6+ Agents</div>
-                  <div class="stat-text">Injection Sentinel utilizes specialized agents, guiding security audits and their journeys</div>
-                </div>
-              </div>
+    svg {
+      max-width: 24px;
+      max-height: 24px;
+    }
+  </style>
+</head>
 
-              <div class="stat-card stat-card-2">
-                <div class="stat-bg" style="background-image: url('/automated.png');"></div>
-                <div class="stat-content">
-                  <div class="stat-value">100%</div>
-                  <div class="stat-text">automated remediation moved through the OpenSwarm pipeline</div>
-                </div>
-              </div>
-
-              <div class="stat-card stat-card-3">
-                <div class="stat-bg" style="background-image: url('/team.png');"></div>
-                <div class="stat-content">
-                  <div class="stat-value">Zero</div>
-                  <div class="stat-text">false positives with our Red Team confirmation system</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Fade Overlay -->
-            <div class="about-fade"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Pipeline Section -->
-      <section class="pipeline-section" id="pipeline">
-        <div class="section-container">
-          <div class="section-header">
-            <span class="section-tag">Architecture</span>
-            <h2 class="section-title">Multi-Agent Pipeline</h2>
-            <p class="section-subtitle">An end-to-end automated process that triggers via Discord, analyzes code, exploits vulnerabilities, verifies fixes, and reports back.</p>
-          </div>
-          <div class="pipeline-flow">
-            <div class="pipeline-step" data-step="1">
-              <div class="step-number">01</div>
-              <div class="step-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-              </div>
-              <h3>Trigger Scan</h3>
-              <p>User triggers <code>/scan</code> via Discord.</p>
-            </div>
-            <div class="pipeline-connector"><div class="connector-line"></div></div>
-            <div class="pipeline-step" data-step="2">
-              <div class="step-number">02</div>
-              <div class="step-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-              </div>
-              <h3>Clone PR</h3>
-              <p>Clone GitHub PR Repository.</p>
-            </div>
-            <div class="pipeline-connector"><div class="connector-line"></div></div>
-            <div class="pipeline-step" data-step="3">
-              <div class="step-number">03</div>
-              <div class="step-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              </div>
-              <h3>Scan Sinks</h3>
-              <p>Scan Repository for LLM Sinks.</p>
-            </div>
-            <div class="pipeline-connector"><div class="connector-line"></div></div>
-            <div class="pipeline-step" data-step="4">
-              <div class="step-number">04</div>
-              <div class="step-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-              </div>
-              <h3>Trace Flow</h3>
-              <p>Trace Prompt Injection Vulnerabilities.</p>
-            </div>
-            <div class="pipeline-connector"><div class="connector-line"></div></div>
-            <div class="pipeline-step" data-step="5">
-              <div class="step-number">05</div>
-              <div class="step-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-              </div>
-              <h3>Red Team</h3>
-              <p>Red Team: Exploit Generation.</p>
-            </div>
-            <div class="pipeline-connector"><div class="connector-line"></div></div>
-            <div class="pipeline-step" data-step="6">
-              <div class="step-number">06</div>
-              <div class="step-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-              </div>
-              <h3>Fix Bug</h3>
-              <p>Fix Vulnerability in the codebase.</p>
-            </div>
-            <div class="pipeline-connector"><div class="connector-line"></div></div>
-            <div class="pipeline-step" data-step="7">
-              <div class="step-number">07</div>
-              <div class="step-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              </div>
-              <h3>Verify Patch</h3>
-              <p>Verify that the generated patch is secure.</p>
-            </div>
-            <div class="pipeline-connector"><div class="connector-line"></div></div>
-            <div class="pipeline-step" data-step="8">
-              <div class="step-number">08</div>
-              <div class="step-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <h3>Report</h3>
-              <p>Generate Markdown Report.</p>
-            </div>
-            <div class="pipeline-connector"><div class="connector-line"></div></div>
-            <div class="pipeline-step" data-step="9">
-              <div class="step-number">09</div>
-              <div class="step-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              </div>
-              <h3>Send UI</h3>
-              <p>Discord Bot Sends Report & Approval UI.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Features Section -->
-      <section class="features-section" id="features">
-        <div class="section-container">
-          <div class="section-header">
-            <span class="section-tag">Capabilities</span>
-            <h2 class="section-title">Why Injection Sentinel?</h2>
-            <p class="section-subtitle">Purpose-built to catch the vulnerabilities static analyzers miss.</p>
-          </div>
-          <div class="features-grid">
-            <div class="feature-card">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <h3>Deep Injection Detection</h3>
-              <p>Goes beyond pattern matching — traces actual data flow from user input to LLM prompts to find real injection vectors.</p>
-            </div>
-            <div class="feature-card">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-              </div>
-              <h3>Adversarial Red Teaming</h3>
-              <p>An AI agent generates real malicious payloads to prove exploitability — no theoretical risks, only confirmed vulnerabilities.</p>
-            </div>
-            <div class="feature-card">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-              </div>
-              <h3>Automated Remediation</h3>
-              <p>Doesn't just report — applies fixes, verifies the patch, and presents diffs for human-in-the-loop approval.</p>
-            </div>
-            <div class="feature-card">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-              </div>
-              <h3>Discord-Native</h3>
-              <p>Integrated as a slash command bot. Trigger scans, review reports, and approve fixes without leaving your team's workflow.</p>
-            </div>
-            <div class="feature-card">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-              </div>
-              <h3>PR-Level Scanning</h3>
-              <p>Scan any GitHub Pull Request URL. Catches vulnerabilities before they're merged into your production branch.</p>
-            </div>
-            <div class="feature-card">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-              </div>
-              <h3>Multi-Agent Architecture</h3>
-              <p>Six specialized agents — scanner, tracer, red-teamer, fixer, verifier, and reporter — each optimized for their role.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
-
-      <!-- Footer -->
-      <footer class="footer-section">
-        <div class="section-container">
-          <div class="footer-content">
-            <div class="footer-brand">
-              <div class="logo-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                </svg>
-              </div>
-              <span class="logo-text">Injection <span class="logo-accent"> Sentinel</span></span>
-            </div>
-            <p class="footer-desc">Production-quality prompt injection detection built for the OpenSwarm ecosystem.</p>
-            <div class="footer-links">
-              <a href="https://github.com/arnav-eluri/openswarm_hackathon_zeroday" target="_blank">GitHub</a>
-            </div>
-            <div class="footer-divider"></div>
-            <span class="footer-copy">A Project by Arnav, Aryan and Ruhi</span>
-          </div>
-        </div>
-      </footer>
+<body>
+  <div id="app">
+    <!-- Ambient background -->
+    <div class="ambient-bg">
+      <div class="glow glow-1"></div>
+      <div class="glow glow-2"></div>
+      <div class="glow glow-3"></div>
+      <div class="grid-overlay"></div>
     </div>
 
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+      <a href="#" class="nav-logo" style="text-decoration: none;">
+        <span class="logo-text"
+          style="font-family: var(--font); font-size: 24px; color: #fff8f0; font-weight: 600;"><span
+            style="color: var(--accent);">Sentinel</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#pipeline" class="nav-link">Pipeline</a>
+        <a href="#features" class="nav-link">Features</a>
+      </div>
+      <div class="nav-actions" style="display: flex; gap: 12px; align-items: center;">
+        <a href="https://github.com/arnav-eluri/openswarm_hackathon_zeroday/tree/main/README.md" target="_blank"
+          class="btn btn-outline-nav">Docs</a>
+        <a href="https://github.com/arnav-eluri/openswarm_hackathon_zeroday" target="_blank"
+          class="btn btn-solid-nav">GitHub</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Detect & Neutralize<br /><span style="color: var(--accent);">Prompt Injections</span>
+        </h1>
+        <p class="hero-subtitle-new">An automated, multi-agent AI pipeline that scans your codebase for LLM
+          vulnerabilities, generates exploits to confirm risk, and applies verified fixes — all from Discord.</p>
+      </div>
+      <div class="hero-reveal-layer">
+        <div class="about-container">
+          <!-- Top Row -->
+          <div class="about-header">
+            <h2 class="about-heading">About<br />the project</h2>
+            <div class="about-desc">
+              <p>Injection Sentinel is a platform built for the OpenSwarm ecosystem, designed to source, detect, and
+                showcase automated prompt injection remediations.</p>
+              <p>Our mission is to offer every developer the chance to reshape their security posture with our
+                multi-agent AI pipeline.</p>
+
+              <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px;">
+                <a href="https://github.com/arnav-eluri/openswarm_hackathon_zeroday" target="_blank" rel="noreferrer"
+                  class="about-link group" style="margin-top: 0;">
+                  <span class="about-link-text">Injection Sentinel on GitHub</span>
+                  <span class="about-link-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" class="about-link-icon">
+                      <path d="M7 17L17 7M7 7h10v10" />
+                    </svg>
+                  </span>
+                </a>
+                <a href="https://github.com/arnav-eluri/openswarm_hackathon_zeroday/tree/main/docs" target="_blank"
+                  rel="noreferrer" class="about-link group" style="margin-top: 0;">
+                  <span class="about-link-text">Documentation</span>
+                  <span class="about-link-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" class="about-link-icon">
+                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="about-stats">
+            <div class="stat-card stat-card-1">
+              <div class="stat-bg" style="background-image: url('/agents.png');"></div>
+              <div class="stat-content">
+                <div class="stat-value">6+ Agents</div>
+                <div class="stat-text">Injection Sentinel utilizes specialized agents, guiding security audits and their
+                  journeys</div>
+              </div>
+            </div>
+
+            <div class="stat-card stat-card-2">
+              <div class="stat-bg" style="background-image: url('/automated.png');"></div>
+              <div class="stat-content">
+                <div class="stat-value">100%</div>
+                <div class="stat-text">automated remediation moved through the OpenSwarm pipeline</div>
+              </div>
+            </div>
+
+            <div class="stat-card stat-card-3">
+              <div class="stat-bg" style="background-image: url('/team.png');"></div>
+              <div class="stat-content">
+                <div class="stat-value">Zero</div>
+                <div class="stat-text">false positives with our Red Team confirmation system</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fade Overlay -->
+          <div class="about-fade"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pipeline Section -->
+    <section class="pipeline-section" id="pipeline" style="padding: 0;">
+      <div class="section-container" style="padding-bottom: 24px; padding-top: 60px;">
+        <div class="section-header">
+          <span class="section-tag">Architecture</span>
+          <h2 class="section-title">Multi-Agent Pipeline</h2>
+          <p class="section-subtitle">An end-to-end automated process that triggers via Discord, analyzes code, exploits
+            vulnerabilities, verifies fixes, and reports back.</p>
+        </div>
+      </div>
+      <div class="pipeline-image-container"
+        style="width: calc(100% - 48px); max-width: 1350px; margin: 0 auto 40px auto; border-radius: 40px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); background: rgba(5,5,5,0.6); padding: 16px;">
+        <img src="/pipeline.png" alt="Architecture Diagram"
+          style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 24px; opacity: 0.8;" />
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Capabilities</span>
+          <h2 class="section-title">Why Injection Sentinel?</h2>
+          <p class="section-subtitle">Purpose-built to catch the vulnerabilities static analyzers miss.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h3>Deep Injection Detection</h3>
+            <p>Goes beyond pattern matching — traces actual data flow from user input to LLM prompts to find real
+              injection vectors.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </div>
+            <h3>Adversarial Red Teaming</h3>
+            <p>An AI agent generates real malicious payloads to prove exploitability — no theoretical risks, only
+              confirmed vulnerabilities.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path
+                  d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+              </svg>
+            </div>
+            <h3>Automated Remediation</h3>
+            <p>Doesn't just report — applies fixes, verifies the patch, and presents diffs for human-in-the-loop
+              approval.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                <line x1="9" y1="9" x2="9.01" y2="9" />
+                <line x1="15" y1="9" x2="15.01" y2="9" />
+              </svg>
+            </div>
+            <h3>Discord-Native</h3>
+            <p>Integrated as a slash command bot. Trigger scans, review reports, and approve fixes without leaving your
+              team's workflow.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polyline points="16 18 22 12 16 6" />
+                <polyline points="8 6 2 12 8 18" />
+              </svg>
+            </div>
+            <h3>PR-Level Scanning</h3>
+            <p>Scan any GitHub Pull Request URL. Catches vulnerabilities before they're merged into your production
+              branch.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+            </div>
+            <h3>Multi-Agent Architecture</h3>
+            <p>Six specialized agents — scanner, tracer, red-teamer, fixer, verifier, and reporter — each optimized for
+              their role.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <!-- Footer -->
+    <footer class="footer-section">
+      <div class="section-container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="logo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <span class="logo-text">Injection <span class="logo-accent"> Sentinel</span></span>
+          </div>
+          <p class="footer-desc">Production-quality prompt injection detection built for the OpenSwarm ecosystem.</p>
+          <div class="footer-links">
+            <a href="https://github.com/arnav-eluri/openswarm_hackathon_zeroday" target="_blank">GitHub</a>
+          </div>
+          <div class="footer-divider"></div>
+          <span class="footer-copy">A Project by Arnav, Aryan and Ruhi</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>

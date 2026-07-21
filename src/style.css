@@ -17,7 +17,7 @@
   /* Colors — Black + Yellow/Orange */
   --bg-primary: #050505;
   --bg-secondary: #0a0a0a;
-  --bg-tertiary: #111111;
+  --bg-tertiary: #000000;
   --bg-card: rgba(255, 255, 255, 0.03);
   --bg-card-hover: rgba(188, 57, 8, 0.04);
 
@@ -537,108 +537,9 @@ code {
 .pipeline-section {
   position: relative;
   z-index: 1;
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-}
-
-.pipeline-flow {
-  display: flex;
-  align-items: flex-start;
-  gap: 0;
-  overflow-x: auto;
-  padding-bottom: 16px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent-subtle) transparent;
-}
-
-.pipeline-step {
-  flex: 0 0 180px;
-  text-align: center;
-  padding: 24px 16px;
-  border-radius: var(--radius-lg);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-}
-
-.pipeline-step:hover {
-  background: var(--bg-card-hover);
-}
-
-.step-number {
-  font-size: 11px;
-  font-weight: 700;
-  font-family: var(--font-mono);
-  color: var(--accent);
-  margin-bottom: 16px;
-  letter-spacing: 1px;
-}
-
-.step-icon {
-  width: 52px;
-  height: 52px;
-  margin: 0 auto 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--accent-subtle);
-  border: 1px solid rgba(188, 57, 8, 0.1);
-  border-radius: 14px;
-  color: var(--accent);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.pipeline-step:hover .step-icon {
-  background: rgba(188, 57, 8, 0.12);
-  border-color: rgba(188, 57, 8, 0.25);
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 12px 30px var(--accent-glow);
-}
-
-.step-icon svg {
-  width: 22px;
-  height: 22px;
-}
-
-.pipeline-step h3 {
-  font-size: 15px;
-  font-family: var(--font-heading);
-  font-weight: 500;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.pipeline-step p {
-  font-size: 12.5px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-}
-
-.pipeline-connector {
-  display: flex;
-  align-items: center;
-  padding-top: 76px;
-  flex-shrink: 0;
-}
-
-.connector-line {
-  width: 36px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent-glow), var(--accent), var(--accent-glow), transparent);
-  border-radius: 2px;
-  position: relative;
-}
-
-.connector-line::after {
-  content: '';
-  position: absolute;
-  right: -3px;
-  top: -3px;
-  width: 8px;
-  height: 8px;
-  border-top: 2px solid var(--accent);
-  border-right: 2px solid var(--accent);
-  transform: rotate(45deg);
 }
 
 /* ═══════════════════════════════════════════════
